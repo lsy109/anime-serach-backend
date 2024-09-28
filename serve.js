@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000; // 使用环境变量 PORT，或默认到
 const cors = require("cors");
 app.use(
   cors({
-    origin: "https://prismatic-snickerdoodle-033dc5.netlify.app",
+    origin: "https://anime-serach-backend-c7e708e442ee.herokuapp.com",
   })
 );
 // 允许跨域访问

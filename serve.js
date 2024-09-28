@@ -9,6 +9,7 @@ app.use(
     origin: "https://anime-serach-backend-c7e708e442ee.herokuapp.com",
   })
 );
+
 // 允许跨域访问
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -18,6 +19,9 @@ app.use((req, res, next) => {
 });
 
 // 定义API路由
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 //這是輸入請求的api
 app.get("/api/images", async (req, res) => {
   const tag = req.query.tag || "default"; // 从查询参数获取搜索关键字

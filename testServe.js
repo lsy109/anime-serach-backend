@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000; // 使用环境变量 PORT，或默认到
 const cors = require("cors");
 app.use(
   cors({
-    origin: "https://anime-serach-backend-c7e708e442ee.herokuapp.com",
+    origin: "http://localhost:3000",
   })
 );
 
@@ -26,12 +26,13 @@ app.get("/", (req, res) => {
 app.get("/api/images", async (req, res) => {
   const tag = req.query.tag || "default"; // 从查询参数获取搜索关键字
   const page = req.query.page; //這裏獲取到頁數
+  const purity = req.query.purity; //這裏獲取圖片種類
   const apiKey = "B0HGeZFmcMHO6iOL6729XYNVyqeYT5HK"; // 你的 Wallhaven API Key
   // const seed = Math.random().toString(36).substring(2, 8); // 生成随机种子
   // const randomParam = new Date().getTime();
   const ImgDB = `https://wallhaven.cc/api/v1/search?apikey=${apiKey}&q=${encodeURIComponent(
     tag
-  )}&page=${page}`;
+  )}&page=${page}&categories=011&purity=${purity}`;
 
   try {
     const response = await axios.get(ImgDB);
@@ -90,7 +91,6 @@ app.get("/time-sorting-image", async (req, res) => {
     res.status(500).send("Error fetching images");
   }
 });
-
 // 启动服务器
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
